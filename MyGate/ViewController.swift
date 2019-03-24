@@ -82,7 +82,7 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
             
             // create dataTask using the session object to send data to the server
             let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-                // TODO return the response
+                
                 guard error == nil else {
                     return
                 }
@@ -96,8 +96,16 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
                     if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                         DispatchQueue.main.async {
                             buttonName.backgroundColor = UIColor.lightGray // turn button pressed back into gray
+                            
                             self.position.text = "Gate Position: \(json["postion"] ?? "Connection Failed")"
+                            
+                            // change the buttons back to default view when a responce has been recevied
                             self.spinWheel.isHidden = true
+                            self.close.isEnabled = true
+                            self.open.isEnabled = true
+                            self.open.backgroundColor = UIColor.lightGray // set other button color default gray
+                            self.close.backgroundColor = UIColor.lightGray
+                            
                         }
                     }
                 } catch let error {
@@ -149,21 +157,27 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
         getposition.resume()
     }
     
-    // Button color and spinwheel logic
+    // will disable buttons appropriately and change color
+    func buttonManager(firstButton:UIButton,secondButton:UIButton){
+        firstButton.backgroundColor = UIColor(red:0.0,green: 0.4,blue: 1.0, alpha: 0.5)
+        firstButton.isEnabled = false
+        secondButton.isEnabled = false
+        secondButton.backgroundColor = UIColor.darkGray
+    }
     
     // open button executes postmaster with open command
     @IBAction func OpenGate(_ sender: Any) {
-        // when pressed button will turn blue
-        self.open.backgroundColor = UIColor(red:0.0,green: 0.4,blue: 1.0, alpha: 0.5)
+        buttonManager(firstButton: open, secondButton: close)
         PostMaster(data: ["gate":"open","username":username,"password":password],buttonName: self.open)
     }
     // close button executes postmaster with close command
     @IBAction func CloseGate(_ sender: Any) {
-        self.close.backgroundColor = UIColor(red:0.0,green: 0.4,blue: 1.0, alpha: 0.5)
+        buttonManager(firstButton: close, secondButton: open)
         PostMaster(data: ["gate":"close","username":username,"password":password],buttonName: self.close)
     }
     // stop button executes postmaster with stop command
     @IBAction func StopGate(_ sender: Any) {
+        buttonManager(firstButton: close, secondButton: open)
         self.open.backgroundColor = UIColor.lightGray // set other button color default gray
         self.close.backgroundColor = UIColor.lightGray // set other button color default gray
         self.stop.backgroundColor = UIColor(red:0.0,green: 0.4,blue: 1.0, alpha: 0.5) // stop button is blue
@@ -184,7 +198,6 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
         MasterGet()
         // spin wheel is hidden
         self.spinWheel.isHidden = true
-        
     }
 }
 
