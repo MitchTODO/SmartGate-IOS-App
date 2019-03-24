@@ -81,8 +81,8 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             
             // create dataTask using the session object to send data to the server
+            // TODO clean code and fix error handling
             let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-                
                 guard error == nil else {
                     return
                 }
@@ -124,10 +124,13 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
  
     // Main get request to receive gate position
     func MasterGet(){
+        if (ServerSocket != nil || password.isEmpty == false || username.isEmpty == false){
         let session = URLSession(configuration: .default)
         let getposition = session.dataTask(with: ServerSocket!) {(data,response,error) in
             if let e = error{
-                print("Error Occurred: \(e)")
+                DispatchQueue.main.async {
+                    self.position.text = "Check Internet Connection"
+                }
             } else {
                 if (response as? HTTPURLResponse) != nil {
                     if let imageData = data {
@@ -139,9 +142,7 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
                                 
                                 // JSON index
                                 let ET = data["postion"] as? String
-                                DispatchQueue.main.async {
-                                    self.position.text = "Gate Position: \(ET ?? "Connection Failed")"
-                                }
+                                self.position.text = "Gate Position: \(ET ?? "Connection Failed")"
                             }
                         }
                         // if failed display connection failed
@@ -155,6 +156,10 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
             
         }
         getposition.resume()
+        }else{
+            performSegue(withIdentifier: "Ssettings", sender: Edit)
+            NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: nil)
+        }
     }
     
     // will disable buttons appropriately and change color
@@ -179,7 +184,7 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
     @IBAction func StopGate(_ sender: Any) {
         buttonManager(firstButton: close, secondButton: open)
         self.open.backgroundColor = UIColor.lightGray // set other button color default gray
-        self.close.backgroundColor = UIColor.lightGray // set other button color default gray
+        self.close.backgroundColor = UIColor.lightGray
         self.stop.backgroundColor = UIColor(red:0.0,green: 0.4,blue: 1.0, alpha: 0.5) // stop button is blue
         PostMaster(data:["gate":"stop","username":username,"password":password],buttonName: self.stop)
     }
