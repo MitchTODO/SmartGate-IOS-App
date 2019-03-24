@@ -16,10 +16,14 @@ Story board consists of two views. Default view-controller contains three button
 
 ![alt text](readmepic/layout.png "Layout")
 
+
+<div>
 <img src="readmepic/sim1.png" alt="view1" width="200"/>
 <img src="readmepic/sim2.png" alt="view2" width="200"/>
 <img src="readmepic/sim3.png" alt="view3" width="200"/>
 <img src="readmepic/sim4.png" alt="view4" width="200"/>
+</div>
+
 
 ## Architecture
 
