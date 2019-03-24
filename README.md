@@ -82,7 +82,7 @@ if (response as? HTTPURLResponse) != nil {
 
 ## Issues
 
-Two issues messy code and lack of security.
+Two issues, messy code and lack of security.
 
 I will be updating this project in the upcoming months.
 Time of writing: 3/24/19
