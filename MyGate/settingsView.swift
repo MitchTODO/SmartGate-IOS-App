@@ -132,6 +132,7 @@ class settingsView: UIViewController, UITextFieldDelegate {
         }else{
             dismiss(animated: true, completion: nil)
         }
+        self.view.endEditing(true)
         
     }
     
