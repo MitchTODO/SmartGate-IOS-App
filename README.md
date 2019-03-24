@@ -12,18 +12,15 @@ As the source code creator, I'm not labile for damages done to personal property
 
 ## Storyboard
 
-Story board consists of two views. Default view-controller contains three buttons, a label and toolbar with a single edit button. SettingsView view controller contains three text fields and a one label.
+Story board consists of two views. Default view-controller contains three buttons, a label and toolbar with a single edit button. SettingsView view controller contains three text fields and a one label. The three buttons will send commands to the gate server. The edit button will display settingsView view controller allows user to input server settings. Note password and username should only be used for testing, this will be updated.
 
 ![alt text](readmepic/layout.png "Layout")
 
-<div>
 <img src="readmepic/sim1.png" alt="view1" width="200"/>
 <img src="readmepic/sim2.png" alt="view2" width="200"/>
 <img src="readmepic/sim3.png" alt="view3" width="200"/>
 <img src="readmepic/sim4.png" alt="view4" width="200"/>
-</div>
-    
-  
+
 ## Architecture
 
 Two functions allow for commands to be sent and positions to be received.
@@ -82,7 +79,7 @@ if (response as? HTTPURLResponse) != nil {
 
 ## Issues
 
-Two issues, messy code and lack of security.
+Two issues messy code and lack of security.
 
 I will be updating this project in the upcoming months.
 Time of writing: 3/24/19
@@ -90,6 +87,9 @@ Time of writing: 3/24/19
 ## Contribute
 
 Please feel free to add and revise. One could also improve the user interface.
+
+Note: Apple developer account is needed to load your own personal app on your own device. A Apple developer account is around $100. If I can get this app to pass apples app store requirements I will upload to the App store.
+
 
 ## Licensing
 
