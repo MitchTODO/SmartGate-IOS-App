@@ -22,6 +22,8 @@ Story board consists of two views. Default view-controller contains three button
 <img src="readmepic/sim3.png" alt="view3" width="200"/>
 <img src="readmepic/sim4.png" alt="view4" width="200"/>
 </div
+    
+  
 ## Architecture
 
 Two functions allow for commands to be sent and positions to be received.
