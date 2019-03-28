@@ -12,7 +12,7 @@ As the source code creator, I'm not labile for damages done to personal property
 
 Story board consists of two views. Default view-controller contains three buttons, a label and toolbar with a single edit button. SettingsView view controller contains three text fields and a one label. The three buttons will send commands to the gate server. The edit button will display settingsView view controller allows user to input server settings. Note password and username should only be used for testing, this will be updated.
 
-## Iwatch storyboard 
+## iwatch storyboard 
 
 Iwatch storyboard has a single view with three buttons. Similar to the iphone/ipad app, each button will execute a post request with the corresponding gate command.
 
@@ -84,10 +84,8 @@ if (response as? HTTPURLResponse) != nil {
 
 ## Issues
 
-Two issues messy code and lack of security.
+Lack of security.
 
-I will be updating this project in the upcoming months.
-Time of writing: 3/24/19
 
 ## Contribute
 
