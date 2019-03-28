@@ -14,14 +14,12 @@ As the source code creator, I'm not labile for damages done to personal property
 
 Story board consists of two views. Default view-controller contains three buttons, a label and toolbar with a single edit button. SettingsView view controller contains three text fields and a one label. The three buttons will send commands to the gate server. The edit button will display settingsView view controller allows user to input server settings. Note password and username should only be used for testing, this will be updated.
 
-![alt text](readmepic/layout.png "Layout")
+![alt text](readmepic/newUI.png "Layout")
 
 
 <div>
-<img src="readmepic/sim1.png" alt="view1" width="200"/>
-<img src="readmepic/sim2.png" alt="view2" width="200"/>
-<img src="readmepic/sim3.png" alt="view3" width="200"/>
-<img src="readmepic/sim4.png" alt="view4" width="200"/>
+<img src="readmepic/watchApp.png" alt="view1" width="200"/>
+
 </div>
 
 
