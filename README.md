@@ -61,25 +61,22 @@ Note: All data is sent in application/json.
 
 ```js
 if (response as? HTTPURLResponse) != nil {
-                  if let imageData = data {
-
-                      DispatchQueue.main.async { // Make sure you're on the main thread here
-                          // Get JSON
-                          let json = try? JSONSerialization.jsonObject(with: imageData, options: [])
-                          if let data = json as? [String: Any] {
-
-                              // JSON index
-                              let ET = data["postion"] as? String
-                              self.position.text = "Gate Position: \(ET ?? "Connection Failed")"
-                          }
-                      }
-                      // if failed display connection failed
-                  } else {
-                      self.position.text = "Gate Position: Connection Failed"
-                  }
-              }else{
-                   self.position.text = "Gate Position: Connection Failed"
-              }
+                    if let imageData = data {
+                       
+                        DispatchQueue.main.async { // Make sure you're on the main thread here
+                            // Get JSON
+                            let json = try? JSONSerialization.jsonObject(with: imageData, options: [])
+                            if let data = json as? [String: Any] {
+                                let ET = data["postion"] as? String
+                                self.position.text = "Gate Position: \(ET ?? "Connection Failed")"
+                            }
+                        }
+                    } else {
+                        self.position.text = "No json data"
+                    }
+                }else{
+                     self.position.text = "Connection Failed"
+                }
 ```
 
 ## Issues
