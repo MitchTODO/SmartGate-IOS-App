@@ -12,7 +12,7 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
-    let serverSocket = URL(string:"https://myhandyhousekeeper.com:8090/gate")!
+    let serverSocket = URL(string:"<YOUR URL>")!
     @IBOutlet weak var Open: WKInterfaceButton!
     @IBOutlet weak var Stop: WKInterfaceButton!
     @IBOutlet weak var Close: WKInterfaceButton!
@@ -106,17 +106,17 @@ class InterfaceController: WKInterfaceController {
     
     
     @IBAction func open() {
-        masterPost(data:["gate":"open","username":"mitch","password":"Pa$$w0rd"],buttonName:Open)
+        masterPost(data:["gate":"open","username":"<YOUR USERNAME>","password":"YOURPASSWORD"],buttonName:Open)
         Open.setBackgroundColor(UIColor(red:1.0,green: 0.5,blue: 0.0, alpha: 0.5))
     }
     
     @IBAction func stop() {
-        masterPost(data:["gate":"stop","username":"mitch","password":"Pa$$w0rd"],buttonName:Stop)
+        masterPost(data:["gate":"stop","username":"<YOUR USERNAME>","password":"YOURPASSWORD"],buttonName:Stop)
         Stop.setBackgroundColor(UIColor(red:1.0,green: 0.5,blue: 0.0, alpha: 0.5))
     }
     
     @IBAction func close() {
-        masterPost(data:["gate":"close","username":"mitch","password":"Pa$$w0rd"],buttonName:Close)
+        masterPost(data:["gate":"close","username":"<YOUR USERNAME>","password":"YOURPASSWORD"],buttonName:Close)
         Close.setBackgroundColor(UIColor(red:1.0,green: 0.5,blue: 0.0, alpha: 0.5))
     }
     
