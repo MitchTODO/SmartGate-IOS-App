@@ -194,7 +194,7 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
         buttonManager(firstButton: close, secondButton: open)
         self.open.backgroundColor = UIColor.lightGray // set other button color default gray
         self.close.backgroundColor = UIColor.lightGray
-        self.stop.backgroundColor = UIColor(red:1.0,green: 0.5,blue: 0.0, alpha: 0.5) // stop button is blue
+        self.stop.backgroundColor = UIColor(red:1.0,green: 0.5,blue: 0.0, alpha: 0.5) // stop button is orange
         PostMaster(data:["gate":"stop","username":username,"password":password],buttonName: self.stop)
     }
     

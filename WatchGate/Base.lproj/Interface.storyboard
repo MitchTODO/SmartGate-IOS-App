@@ -14,17 +14,24 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchGate" customModuleProvider="target">
                     <items>
-                        <button width="136" height="50" alignment="left" title="Open" id="OWm-f1-9Qa">
+                        <button width="1" alignment="center" title="Open" id="OWm-f1-9Qa">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" type="boldSystem" pointSize="19"/>
                             <connections>
                                 <action selector="open" destination="AgC-eL-Hgc" id="RQx-c2-AjR"/>
                             </connections>
                         </button>
-                        <button width="136" height="49" alignment="left" title="Stop" id="Bxy-mQ-k38">
+                        <button width="1" alignment="center" verticalAlignment="center" title="Stop" id="Bxy-mQ-k38">
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" type="boldSystem" pointSize="19"/>
                             <connections>
                                 <action selector="stop" destination="AgC-eL-Hgc" id="vF9-lj-sym"/>
                             </connections>
                         </button>
-                        <button width="134" height="49" alignment="left" title="Close" id="lIp-lf-C2W">
+                        <button width="1" alignment="center" verticalAlignment="bottom" title="Close" id="lIp-lf-C2W">
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" type="boldSystem" pointSize="19"/>
                             <connections>
                                 <action selector="close" destination="AgC-eL-Hgc" id="zkS-Sq-BEB"/>
                             </connections>
@@ -37,38 +44,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="347.5"/>
-        </scene>
-        <!--Static Notification Interface Controller-->
-        <scene sceneID="AEw-b0-oYE">
-            <objects>
-                <notificationController id="YCC-NB-fut">
-                    <items>
-                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
-                    </items>
-                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
-                    <connections>
-                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
-                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
-                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
-                    </connections>
-                </notificationController>
-            </objects>
-            <point key="canvasLocation" x="220" y="643"/>
-        </scene>
-        <!--Notification Controller-->
-        <scene sceneID="ZPc-GJ-vnh">
-            <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="WatchGate" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="468" y="643"/>
-        </scene>
-        <!--Notification Controller-->
-        <scene sceneID="Niz-AI-uX2">
-            <objects>
-                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="WatchGate" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="468" y="345"/>
+            <point key="canvasLocation" x="220" y="347"/>
         </scene>
     </scenes>
 </document>

@@ -12,15 +12,48 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
+    let serverSocket = URL(string:"https://myhandyhousekeeper.com:8090/gate")!
     @IBOutlet weak var Open: WKInterfaceButton!
-    
     @IBOutlet weak var Stop: WKInterfaceButton!
-    
     @IBOutlet weak var Close: WKInterfaceButton!
+    
+    // Main get request to receive gate position
+    func MasterGet(){
+            let session = URLSession(configuration: .default)
+        let getposition = session.dataTask(with: serverSocket) {(data,response,error) in
+            
+                    if (response as? HTTPURLResponse) != nil {
+                        if let imageData = data {
+                            DispatchQueue.main.async { // Make sure you're on the main thread here
+                                // Get JSON
+                                let json = try? JSONSerialization.jsonObject(with: imageData, options: [])
+                                if let data = json as? [String: Any] {
+                                    let ET = data["postion"] as? String
+                                    
+                                    if ET == "18"{
+                                        self.Open.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.5))
+                                        
+                                    }else if ET == "0"{
+                                        self.Close.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.5))
+                                    }else{
+                                        self.Open.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.5))
+                                        self.Close.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.5))
+                                    }
+                                }
+                            }
+                        } else {
+                           
+                        }
+                    }
+                }
+                
+        
+            getposition.resume()
+    }
     
 
     func masterPost(data: [String:Any],buttonName:WKInterfaceButton){
-        let serverSocket = URL(string:"")!
+        
         var request = URLRequest(url: serverSocket)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -37,9 +70,29 @@ class InterfaceController: WKInterfaceController {
                 if let response = response as? HTTPURLResponse {
                     print("statusCode: \(response.statusCode)")
                 }
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("data: \(dataString)")
+                if let data = data {
+                    DispatchQueue.main.async {
+                        //create json object from data
+                        let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]
+                        if let data = json as? [String: Any] {
+                            let ET = data["postion"] as? String
+                            if ET == "18"{
+                                self.Open.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.5))
+                                self.Close.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.2))
+                                self.Stop.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.2))
+                            }else if ET == "0"{
+                                self.Close.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.5))
+                                self.Open.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.2))
+                                self.Stop.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.2))
+                            }else{
+                                self.Open.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.5))
+                                self.Close.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.5))
+                                self.Stop.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.2))
+                            }
+                        }
+                    }
                 }
+                
             }
         }
         task.resume()
@@ -53,20 +106,27 @@ class InterfaceController: WKInterfaceController {
     
     
     @IBAction func open() {
-        masterPost(data:["gate":"open"],buttonName:Open)
+        masterPost(data:["gate":"open","username":"mitch","password":"Pa$$w0rd"],buttonName:Open)
+        Open.setBackgroundColor(UIColor(red:1.0,green: 0.5,blue: 0.0, alpha: 0.5))
     }
     
     @IBAction func stop() {
-        masterPost(data:["gate":"stop"],buttonName:Stop)
+        masterPost(data:["gate":"stop","username":"mitch","password":"Pa$$w0rd"],buttonName:Stop)
+        Stop.setBackgroundColor(UIColor(red:1.0,green: 0.5,blue: 0.0, alpha: 0.5))
     }
     
     @IBAction func close() {
-        masterPost(data:["gate":"close"],buttonName:Close)
+        masterPost(data:["gate":"close","username":"mitch","password":"Pa$$w0rd"],buttonName:Close)
+        Close.setBackgroundColor(UIColor(red:1.0,green: 0.5,blue: 0.0, alpha: 0.5))
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        MasterGet()
+        self.Close.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.2))
+        self.Open.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.2))
+        self.Stop.setBackgroundColor(UIColor(red:1.0,green: 1.0,blue: 1.0, alpha: 0.2))
     }
     
     override func didDeactivate() {
