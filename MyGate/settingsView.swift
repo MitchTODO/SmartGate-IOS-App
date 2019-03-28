@@ -46,7 +46,7 @@ class settingsView: UIViewController, UITextFieldDelegate {
     
     // Notify user no server settings are present
     @objc func refreshLbl(notification: NSNotification) {
-        errorlabel.text = "No server settings"
+        errorlabel.text = "Check settings"
         errorlabel.textColor = UIColor.red
     }
     
@@ -62,58 +62,6 @@ class settingsView: UIViewController, UITextFieldDelegate {
         //unsubscribeFromKeyboardNotifications()
     }
     
-    /*
-     NOTE Below is turned off, allows the keyboard to open to certain heights based on where text feild is
-    */
-    
-    /*
-     func: subscribeToKeyboardNotifications / unsubscribeFromKeyboardNotifications
-     input: none
-     output: none
-     notes:
-     -manages keyboard notification
-     -moves view up allowing space for the keyboard
-    */
-    /*
-    func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    func unsubscribeFromKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    */
-    /*
-     func: keyboardWillHide / keyboardWillShow
-     input: notification
-     output: none
-     notes:
-     -view is place back to default position when the keyboard is dismissed
-     -checks what textfield is selected (only for the bottom textfield)
-     -move view to notification height (height of keyboard)
-     */
-    /*
-    // MARK: default view without keyboard
-    @objc func keyboardWillHide(_ notification:Notification) {
-        view.frame.origin.y = 0
-    }
-    
-    // MARK: moved view with keyboard
-    @objc func keyboardWillShow(_ notification:Notification) {
-        if (password.isEditing || username.isEditing) {
-            view.frame.origin.y -= getKeyboardHeight(notification)
-        }
-    }
-    
-    // MARK: get height of keyboard
-    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-        return keyboardSize.cgRectValue.height
-    }
-    */
     
     // saves user settings in defaults
     // TODO change username and password to be saved in keychain
@@ -132,7 +80,6 @@ class settingsView: UIViewController, UITextFieldDelegate {
         }else{
             dismiss(animated: true, completion: nil)
         }
-        self.view.endEditing(true)
         
     }
     

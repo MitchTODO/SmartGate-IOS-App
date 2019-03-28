@@ -14,7 +14,57 @@
 		30DC34CD2209273C00F5E28B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DC34CB2209273C00F5E28B /* Main.storyboard */; };
 		30DC34CF2209273D00F5E28B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DC34CE2209273D00F5E28B /* Assets.xcassets */; };
 		30DC34D22209273D00F5E28B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DC34D02209273D00F5E28B /* LaunchScreen.storyboard */; };
+		30F3FC2A224847D4008DEBA6 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30F3FC28224847D4008DEBA6 /* Interface.storyboard */; };
+		30F3FC2C224847D6008DEBA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30F3FC2B224847D6008DEBA6 /* Assets.xcassets */; };
+		30F3FC33224847D6008DEBA6 /* WatchGate Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30F3FC32224847D6008DEBA6 /* WatchGate Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		30F3FC38224847D6008DEBA6 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F3FC37224847D6008DEBA6 /* InterfaceController.swift */; };
+		30F3FC3A224847D6008DEBA6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F3FC39224847D6008DEBA6 /* ExtensionDelegate.swift */; };
+		30F3FC3C224847D6008DEBA6 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F3FC3B224847D6008DEBA6 /* NotificationController.swift */; };
+		30F3FC3E224847D7008DEBA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30F3FC3D224847D7008DEBA6 /* Assets.xcassets */; };
+		30F3FC43224847D7008DEBA6 /* WatchGate.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 30F3FC26224847D4008DEBA6 /* WatchGate.app */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		30F3FC34224847D6008DEBA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30DC34BC2209273C00F5E28B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30F3FC31224847D6008DEBA6;
+			remoteInfo = "WatchGate Extension";
+		};
+		30F3FC41224847D7008DEBA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30DC34BC2209273C00F5E28B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30F3FC25224847D4008DEBA6;
+			remoteInfo = WatchGate;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		30F3FC47224847D7008DEBA6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				30F3FC33224847D6008DEBA6 /* WatchGate Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30F3FC4B224847D7008DEBA6 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				30F3FC43224847D7008DEBA6 /* WatchGate.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		303DC8AB2220D66100C62AF3 /* settingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsView.swift; sourceTree = "<group>"; };
@@ -26,10 +76,28 @@
 		30DC34CE2209273D00F5E28B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30DC34D12209273D00F5E28B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30DC34D32209273D00F5E28B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30F3FC26224847D4008DEBA6 /* WatchGate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchGate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30F3FC29224847D4008DEBA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		30F3FC2B224847D6008DEBA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30F3FC2D224847D6008DEBA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30F3FC32224847D6008DEBA6 /* WatchGate Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchGate Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30F3FC37224847D6008DEBA6 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		30F3FC39224847D6008DEBA6 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		30F3FC3B224847D6008DEBA6 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		30F3FC3D224847D7008DEBA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30F3FC3F224847D7008DEBA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30F3FC40224847D7008DEBA6 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		30DC34C12209273C00F5E28B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30F3FC2F224847D6008DEBA6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				30DC34C62209273C00F5E28B /* MyGate */,
+				30F3FC27224847D4008DEBA6 /* WatchGate */,
+				30F3FC36224847D6008DEBA6 /* WatchGate Extension */,
 				30DC34C52209273C00F5E28B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				30DC34C42209273C00F5E28B /* MyGate.app */,
+				30F3FC26224847D4008DEBA6 /* WatchGate.app */,
+				30F3FC32224847D6008DEBA6 /* WatchGate Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +142,29 @@
 			path = MyGate;
 			sourceTree = "<group>";
 		};
+		30F3FC27224847D4008DEBA6 /* WatchGate */ = {
+			isa = PBXGroup;
+			children = (
+				30F3FC28224847D4008DEBA6 /* Interface.storyboard */,
+				30F3FC2B224847D6008DEBA6 /* Assets.xcassets */,
+				30F3FC2D224847D6008DEBA6 /* Info.plist */,
+			);
+			path = WatchGate;
+			sourceTree = "<group>";
+		};
+		30F3FC36224847D6008DEBA6 /* WatchGate Extension */ = {
+			isa = PBXGroup;
+			children = (
+				30F3FC37224847D6008DEBA6 /* InterfaceController.swift */,
+				30F3FC39224847D6008DEBA6 /* ExtensionDelegate.swift */,
+				30F3FC3B224847D6008DEBA6 /* NotificationController.swift */,
+				30F3FC3D224847D7008DEBA6 /* Assets.xcassets */,
+				30F3FC3F224847D7008DEBA6 /* Info.plist */,
+				30F3FC40224847D7008DEBA6 /* PushNotificationPayload.apns */,
+			);
+			path = "WatchGate Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,15 +175,51 @@
 				30DC34C02209273C00F5E28B /* Sources */,
 				30DC34C12209273C00F5E28B /* Frameworks */,
 				30DC34C22209273C00F5E28B /* Resources */,
+				30F3FC4B224847D7008DEBA6 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				30F3FC42224847D7008DEBA6 /* PBXTargetDependency */,
 			);
 			name = MyGate;
 			productName = MyGate;
 			productReference = 30DC34C42209273C00F5E28B /* MyGate.app */;
 			productType = "com.apple.product-type.application";
+		};
+		30F3FC25224847D4008DEBA6 /* WatchGate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30F3FC48224847D7008DEBA6 /* Build configuration list for PBXNativeTarget "WatchGate" */;
+			buildPhases = (
+				30F3FC24224847D4008DEBA6 /* Resources */,
+				30F3FC47224847D7008DEBA6 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30F3FC35224847D6008DEBA6 /* PBXTargetDependency */,
+			);
+			name = WatchGate;
+			productName = WatchGate;
+			productReference = 30F3FC26224847D4008DEBA6 /* WatchGate.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		30F3FC31224847D6008DEBA6 /* WatchGate Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30F3FC44224847D7008DEBA6 /* Build configuration list for PBXNativeTarget "WatchGate Extension" */;
+			buildPhases = (
+				30F3FC2E224847D6008DEBA6 /* Sources */,
+				30F3FC2F224847D6008DEBA6 /* Frameworks */,
+				30F3FC30224847D6008DEBA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchGate Extension";
+			productName = "WatchGate Extension";
+			productReference = 30F3FC32224847D6008DEBA6 /* WatchGate Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -101,6 +232,12 @@
 				ORGANIZATIONNAME = mitch;
 				TargetAttributes = {
 					30DC34C32209273C00F5E28B = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					30F3FC25224847D4008DEBA6 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					30F3FC31224847D6008DEBA6 = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
@@ -119,6 +256,8 @@
 			projectRoot = "";
 			targets = (
 				30DC34C32209273C00F5E28B /* MyGate */,
+				30F3FC25224847D4008DEBA6 /* WatchGate */,
+				30F3FC31224847D6008DEBA6 /* WatchGate Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -135,6 +274,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		30F3FC24224847D4008DEBA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30F3FC2C224847D6008DEBA6 /* Assets.xcassets in Resources */,
+				30F3FC2A224847D4008DEBA6 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30F3FC30224847D6008DEBA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30F3FC3E224847D7008DEBA6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -148,7 +304,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		30F3FC2E224847D6008DEBA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30F3FC3C224847D6008DEBA6 /* NotificationController.swift in Sources */,
+				30F3FC3A224847D6008DEBA6 /* ExtensionDelegate.swift in Sources */,
+				30F3FC38224847D6008DEBA6 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		30F3FC35224847D6008DEBA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30F3FC31224847D6008DEBA6 /* WatchGate Extension */;
+			targetProxy = 30F3FC34224847D6008DEBA6 /* PBXContainerItemProxy */;
+		};
+		30F3FC42224847D7008DEBA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30F3FC25224847D4008DEBA6 /* WatchGate */;
+			targetProxy = 30F3FC41224847D7008DEBA6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		30DC34CB2209273C00F5E28B /* Main.storyboard */ = {
@@ -165,6 +344,14 @@
 				30DC34D12209273D00F5E28B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		30F3FC28224847D4008DEBA6 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30F3FC29224847D4008DEBA6 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -292,7 +479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XUYDZSBQ86;
 				INFOPLIST_FILE = MyGate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -312,7 +499,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XUYDZSBQ86;
 				INFOPLIST_FILE = MyGate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -323,6 +510,92 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		30F3FC45224847D7008DEBA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XUYDZSBQ86;
+				INFOPLIST_FILE = "WatchGate Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MitchT.MyGate.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		30F3FC46224847D7008DEBA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XUYDZSBQ86;
+				INFOPLIST_FILE = "WatchGate Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MitchT.MyGate.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		30F3FC49224847D7008DEBA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				IBSC_MODULE = WatchGate_Extension;
+				INFOPLIST_FILE = WatchGate/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = MitchT.MyGate.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		30F3FC4A224847D7008DEBA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				IBSC_MODULE = WatchGate_Extension;
+				INFOPLIST_FILE = WatchGate/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = MitchT.MyGate.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Release;
 		};
@@ -343,6 +616,24 @@
 			buildConfigurations = (
 				30DC34D72209273D00F5E28B /* Debug */,
 				30DC34D82209273D00F5E28B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30F3FC44224847D7008DEBA6 /* Build configuration list for PBXNativeTarget "WatchGate Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30F3FC45224847D7008DEBA6 /* Debug */,
+				30F3FC46224847D7008DEBA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30F3FC48224847D7008DEBA6 /* Build configuration list for PBXNativeTarget "WatchGate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30F3FC49224847D7008DEBA6 /* Debug */,
+				30F3FC4A224847D7008DEBA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

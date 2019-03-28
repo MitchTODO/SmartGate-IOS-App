@@ -13,22 +13,37 @@ import Foundation
 class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
     // placeholder for saved user variables
     var ServerSocket = URL(string:"")
-    var password = String() // not used
-    var username = String() // not used
+    var password = String()
+    var username = String()
     
-    // buttons,ActivityIndicator
+    // outlets
     @IBOutlet weak var spinWheel: UIActivityIndicatorView!
     @IBOutlet weak var position: UILabel!
     @IBOutlet weak var open: UIButton!
     @IBOutlet weak var stop: UIButton!
     @IBOutlet weak var close: UIButton!
     @IBOutlet weak var Edit: UIBarButtonItem!
+    @IBOutlet weak var stackview: UIStackView!
     
+    // change the buttons from a stack to horizontal proportional to screen orientation
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        switch UIDevice.current.orientation {
+        case .portrait:
+            self.stackview.axis = .vertical
+        case .portraitUpsideDown:
+            self.stackview.axis = .vertical
+        case .landscapeLeft:
+            self.stackview.axis = .horizontal
+        case .landscapeRight:
+            self.stackview.axis = .horizontal
+        default:
+            self.stackview.axis = .vertical
+        }
+    }
     // load user data
     func didFindWeaponOfMassDestruction(Address: String,Username: String, Password:String) {
         // Handle the save data
         ServerSocket = URL(string:Address)
-        // these should be loaded from the keychain
         password = Password
         username = Username
     }
@@ -39,88 +54,84 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
         if segue.identifier == "Ssettings" {
             let vc : settingsView = segue.destination as! settingsView
             vc.delegate = self
         }
     }
     
+    // changes look to default
+    func buttonDefault(){
+        // change the buttons back to default
+        self.spinWheel.isHidden = true
+        self.close.isEnabled = true
+        self.open.isEnabled = true
+        self.open.backgroundColor = UIColor.lightGray // set other button color default gray
+        self.close.backgroundColor = UIColor.lightGray
+        self.stop.backgroundColor = UIColor.lightGray
+        
+    }
     
-
+    
     // post request to gateServer with the command the user selected
-    func PostMaster(data: [String:Any],buttonName:UIButton) {
-        // check user input is not nil mainly serverSocket
-        if (ServerSocket != nil || password.isEmpty == false || username.isEmpty == false){
-            
+    func PostMaster(data: [String:Any],buttonName:UIButton){
+        // check user input is not empty
+        if (ServerSocket != nil && password.isEmpty == false && username.isEmpty == false){
             // gate position is none and spinwheel is on
             position.text = ""
             self.spinWheel.isHidden = false
             
-            // open,close,stop
-            let parameters = data
-            
-            // create the url with URL
-            // Serversocket is the url used to send the post
-            let url = ServerSocket!
-
-            // create the session object
-            let session = URLSession.shared
-
-            // now create the URLRequest object using the url object
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST" //set http method as POST
-            
+            // send post request
+            var request = URLRequest(url: ServerSocket!)
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
             do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+                request.httpBody = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
             } catch let error {
                 print(error.localizedDescription)
             }
-            
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            
             // create dataTask using the session object to send data to the server
-            // TODO clean code and fix error handling
-            let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-                guard error == nil else {
-                    return
-                }
-                
-                guard let data = data else {
-                    return
-                }
-                
-                do {
-                    //create json object from data
-                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                // handle response with appropriate action
+                if let error = error {
+                    DispatchQueue.main.async {
+                        buttonName.backgroundColor = UIColor.lightGray // turn button pressed back into gray
+                        self.position.text = "Could not connect to the server."
+                        self.buttonDefault()
+                    }
+                } else {
+                    if let response = response as? HTTPURLResponse {
                         DispatchQueue.main.async {
-                            buttonName.backgroundColor = UIColor.lightGray // turn button pressed back into gray
-                            
-                            self.position.text = "Gate Position: \(json["postion"] ?? "Connection Failed")"
-                            
-                            // change the buttons back to default view when a responce has been recevied
-                            self.spinWheel.isHidden = true
-                            self.close.isEnabled = true
-                            self.open.isEnabled = true
-                            self.open.backgroundColor = UIColor.lightGray // set other button color default gray
-                            self.close.backgroundColor = UIColor.lightGray
-                            
+                        if response.statusCode == 200 { // show JSON if response is successful
+                            if let data = data {
+                                DispatchQueue.main.async {
+                                    //create json object from data
+                                    let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]
+                                    if let data = json as? [String: Any] {
+                                        let position = data["postion"] as? String
+                                        self.position.text = "Gate Position: \(position ?? "?" )"
+                                    }
+                                }
+                            }
+                        }else{
+                            // show http error code
+                            self.position.text = "Error Code: \(response.statusCode)"
+                           }
+                         self.buttonDefault()
                         }
                     }
-                } catch let error {
-                    print(error.localizedDescription)
                 }
-            })
+            }
             task.resume()
-            
         // perform segue to the settings page
         // Set the notification on the settings page (red text on page)
-        }else{
+         }else{
+            self.buttonDefault()
             performSegue(withIdentifier: "Ssettings", sender: Edit)
             NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: nil)
         }
     }
+
  
     // Main get request to receive gate position
     func MasterGet(){
@@ -129,7 +140,7 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
         let getposition = session.dataTask(with: ServerSocket!) {(data,response,error) in
             if let e = error{
                 DispatchQueue.main.async {
-                    self.position.text = "Check Internet Connection"
+                    self.position.text = "Could not connect to the server."
                 }
             } else {
                 if (response as? HTTPURLResponse) != nil {
@@ -139,18 +150,15 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
                             // Get JSON
                             let json = try? JSONSerialization.jsonObject(with: imageData, options: [])
                             if let data = json as? [String: Any] {
-                                
-                                // JSON index
                                 let ET = data["postion"] as? String
                                 self.position.text = "Gate Position: \(ET ?? "Connection Failed")"
                             }
                         }
-                        // if failed display connection failed
                     } else {
-                        self.position.text = "Gate Position: Connection Failed"
+                        self.position.text = "No json data"
                     }
                 }else{
-                     self.position.text = "Gate Position: Connection Failed"
+                     self.position.text = "Connection Failed"
                 }
             }
             
@@ -162,9 +170,10 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
         }
     }
     
+
     // will disable buttons appropriately and change color
     func buttonManager(firstButton:UIButton,secondButton:UIButton){
-        firstButton.backgroundColor = UIColor(red:0.0,green: 0.4,blue: 1.0, alpha: 0.5)
+        firstButton.backgroundColor = UIColor(red:1.0,green: 0.5,blue: 0.0, alpha: 0.5)
         firstButton.isEnabled = false
         secondButton.isEnabled = false
         secondButton.backgroundColor = UIColor.darkGray
@@ -185,7 +194,7 @@ class ViewController: UIViewController,SpyDelegate,URLSessionDelegate {
         buttonManager(firstButton: close, secondButton: open)
         self.open.backgroundColor = UIColor.lightGray // set other button color default gray
         self.close.backgroundColor = UIColor.lightGray
-        self.stop.backgroundColor = UIColor(red:0.0,green: 0.4,blue: 1.0, alpha: 0.5) // stop button is blue
+        self.stop.backgroundColor = UIColor(red:1.0,green: 0.5,blue: 0.0, alpha: 0.5) // stop button is blue
         PostMaster(data:["gate":"stop","username":username,"password":password],buttonName: self.stop)
     }
     
