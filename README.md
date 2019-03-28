@@ -14,7 +14,7 @@ Story board consists of two views. Default view-controller contains three button
 
 ## iwatch storyboard 
 
-Iwatch storyboard has a single view with three buttons. Similar to the iphone/ipad app, each button will execute a post request with the corresponding gate command. Note the lighter colored button shows what action is avaible and position of gate.
+Iwatch storyboard has a single view with three buttons. Similar to the iphone/ipad app, each button will execute a post request with the corresponding gate command. Note the lighter colored button shows what action is available and position of gate.
 
 ![alt text](readmepic/newUI.png "Layout")
 
