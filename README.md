@@ -84,7 +84,8 @@ if (response as? HTTPURLResponse) != nil {
 
 ## Issues
 
-Lack of security.
+Security could be improve. Some autolayout problems exist when the keyboard is present on the settings view. 
+Having the compaion app work in conjustion with the iwatch app for user settings.
 
 
 ## Contribute
