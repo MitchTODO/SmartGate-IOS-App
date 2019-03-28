@@ -8,18 +8,19 @@ IOS app controls the <a href = "https://github.com/MitchTODO/Smart-driveway-gate
 
 As the source code creator, I'm not labile for damages done to personal property or persons. USE AT YOUR OWN RISK.
 
-
-
 ## Storyboard
 
 Story board consists of two views. Default view-controller contains three buttons, a label and toolbar with a single edit button. SettingsView view controller contains three text fields and a one label. The three buttons will send commands to the gate server. The edit button will display settingsView view controller allows user to input server settings. Note password and username should only be used for testing, this will be updated.
+
+## Iwatch storyboard 
+
+Iwatch storyboard has a single view with three buttons. Similar to the iphone/ipad app, each button will execute a post request with the corresponding gate command.
 
 ![alt text](readmepic/newUI.png "Layout")
 
 
 <div>
 <img src="readmepic/watchApp.png" alt="view1" width="200"/>
-
 </div>
 
 
