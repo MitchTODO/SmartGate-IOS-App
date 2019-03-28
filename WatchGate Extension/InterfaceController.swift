@@ -20,7 +20,7 @@ class InterfaceController: WKInterfaceController {
     
 
     func masterPost(data: [String:Any],buttonName:WKInterfaceButton){
-        let serverSocket = URL(string:"https://myhandyhousekeeper.com:8090/gate")!
+        let serverSocket = URL(string:"")!
         var request = URLRequest(url: serverSocket)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
