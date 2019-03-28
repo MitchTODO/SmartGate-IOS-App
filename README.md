@@ -20,6 +20,8 @@ Iwatch storyboard has a single view with three buttons. Similar to the iphone/ip
 
 
 <div>
+<img src="readmepic/iwatchUI.png" alt="view1" width="200"/>
+
 <img src="readmepic/watchApp.png" alt="view1" width="200"/>
 </div>
 
